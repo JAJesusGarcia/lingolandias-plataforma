@@ -1,5 +1,5 @@
-import { EnhancedLingolandiasAppJsx } from "@/components/enhanced-lingolandias-app"
+import { EnhancedLingolandiasAppJsx } from '@/components/enhanced-lingolandias-app';
 
 export default function Page() {
-  return <EnhancedLingolandiasAppJsx />
+  return <EnhancedLingolandiasAppJsx />;
 }

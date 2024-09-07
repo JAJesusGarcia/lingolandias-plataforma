@@ -1,87 +1,106 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Progress } from "@/components/ui/progress"
+import { useState } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Progress } from '@/components/ui/progress';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from '@/components/ui/dropdown-menu';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { BookOpen, Calendar, Home, Settings, User, HelpCircle, LogOut, Camera, Bell, Search, Plus, X } from "lucide-react"
+} from '@/components/ui/select';
+import {
+  BookOpen,
+  Calendar,
+  Home,
+  Settings,
+  User,
+  HelpCircle,
+  LogOut,
+  Camera,
+  Bell,
+  Search,
+  Plus,
+  X,
+} from 'lucide-react';
 
 export function EnhancedLingolandiasAppJsx() {
-  const [activeTab, setActiveTab] = useState('home')
-  const [isCreateUserModalOpen, setIsCreateUserModalOpen] = useState(false)
+  const [activeTab, setActiveTab] = useState('home');
+  const [isCreateUserModalOpen, setIsCreateUserModalOpen] = useState(false);
   const [newUser, setNewUser] = useState({
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-    role: ''
-  })
+    role: '',
+  });
 
   const [user, setUser] = useState({
-    firstName: "John",
-    lastName: "Doe",
-    phone: "+1 234 567 8900",
-    email: "john.doe@example.com",
-    address: "123 Main St",
-    city: "Anytown",
-    country: "United States",
-    postalCode: "12345",
-    biography: "Language enthusiast and world traveler.",
-    avatarUrl: "/placeholder.svg?height=128&width=128",
-    level: "Intermediate",
+    firstName: 'John',
+    lastName: 'Doe',
+    phone: '+1 234 567 8900',
+    email: 'john.doe@example.com',
+    address: '123 Main St',
+    city: 'Anytown',
+    country: 'United States',
+    postalCode: '12345',
+    biography: 'Language enthusiast and world traveler.',
+    avatarUrl: '/placeholder.svg?height=128&width=128',
+    level: 'Intermediate',
     xp: 2500,
     nextLevelXp: 5000,
-    languages: ["Spanish", "French", "German"],
-    streak: 15
-  })
+    languages: ['Spanish', 'French', 'German'],
+    streak: 15,
+  });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setUser(prevUser => ({ ...prevUser, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setUser((prevUser) => ({ ...prevUser, [name]: value }));
+  };
 
   const handleNewUserInputChange = (e) => {
-    const { name, value } = e.target
-    setNewUser(prevUser => ({ ...prevUser, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setNewUser((prevUser) => ({ ...prevUser, [name]: value }));
+  };
 
   const handleRoleChange = (value) => {
-    setNewUser(prevUser => ({ ...prevUser, role: value }))
-  }
+    setNewUser((prevUser) => ({ ...prevUser, role: value }));
+  };
 
   const handleCreateUser = () => {
-    console.log('Creating new user:', newUser)
-    setIsCreateUserModalOpen(false)
-    setNewUser({ firstName: '', lastName: '', email: '', password: '', role: '' })
-  }
+    console.log('Creating new user:', newUser);
+    setIsCreateUserModalOpen(false);
+    setNewUser({
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      role: '',
+    });
+  };
 
   const handleImageUpload = (e) => {
-    const file = e.target.files?.[0]
+    const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader()
+      const reader = new FileReader();
       reader.onloadend = () => {
-        setUser(prevUser => ({ ...prevUser, avatarUrl: reader.result }))
-      }
-      reader.readAsDataURL(file)
+        setUser((prevUser) => ({ ...prevUser, avatarUrl: reader.result }));
+      };
+      reader.readAsDataURL(file);
     }
-  }
+  };
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -92,23 +111,43 @@ export function EnhancedLingolandiasAppJsx() {
           <h1 className="text-2xl font-bold">Lingolandias</h1>
         </div>
         <nav className="space-y-4">
-          <a href="#" className={`flex items-center space-x-2 p-2 rounded transition-colors duration-200 ${activeTab === 'home' ? 'bg-white bg-opacity-20' : 'hover:bg-white hover:bg-opacity-10'}`} onClick={() => setActiveTab('home')}>
+          <a
+            href="#"
+            className={`flex items-center space-x-2 p-2 rounded transition-colors duration-200 ${activeTab === 'home' ? 'bg-white bg-opacity-20' : 'hover:bg-white hover:bg-opacity-10'}`}
+            onClick={() => setActiveTab('home')}
+          >
             <Home className="h-5 w-5" />
             <span>Home</span>
           </a>
-          <a href="#" className={`flex items-center space-x-2 p-2 rounded transition-colors duration-200 ${activeTab === 'schedule' ? 'bg-white bg-opacity-20' : 'hover:bg-white hover:bg-opacity-10'}`} onClick={() => setActiveTab('schedule')}>
+          <a
+            href="#"
+            className={`flex items-center space-x-2 p-2 rounded transition-colors duration-200 ${activeTab === 'schedule' ? 'bg-white bg-opacity-20' : 'hover:bg-white hover:bg-opacity-10'}`}
+            onClick={() => setActiveTab('schedule')}
+          >
             <Calendar className="h-5 w-5" />
             <span>My Schedule</span>
           </a>
-          <a href="#" className={`flex items-center space-x-2 p-2 rounded transition-colors duration-200 ${activeTab === 'learning' ? 'bg-white bg-opacity-20' : 'hover:bg-white hover:bg-opacity-10'}`} onClick={() => setActiveTab('learning')}>
+          <a
+            href="#"
+            className={`flex items-center space-x-2 p-2 rounded transition-colors duration-200 ${activeTab === 'learning' ? 'bg-white bg-opacity-20' : 'hover:bg-white hover:bg-opacity-10'}`}
+            onClick={() => setActiveTab('learning')}
+          >
             <BookOpen className="h-5 w-5" />
             <span>Learning</span>
           </a>
-          <a href="#" className={`flex items-center space-x-2 p-2 rounded transition-colors duration-200 ${activeTab === 'profile' ? 'bg-white bg-opacity-20' : 'hover:bg-white hover:bg-opacity-10'}`} onClick={() => setActiveTab('profile')}>
+          <a
+            href="#"
+            className={`flex items-center space-x-2 p-2 rounded transition-colors duration-200 ${activeTab === 'profile' ? 'bg-white bg-opacity-20' : 'hover:bg-white hover:bg-opacity-10'}`}
+            onClick={() => setActiveTab('profile')}
+          >
             <User className="h-5 w-5" />
             <span>Profile</span>
           </a>
-          <a href="#" className={`flex items-center space-x-2 p-2 rounded transition-colors duration-200 ${activeTab === 'admin' ? 'bg-white bg-opacity-20' : 'hover:bg-white hover:bg-opacity-10'}`} onClick={() => setActiveTab('admin')}>
+          <a
+            href="#"
+            className={`flex items-center space-x-2 p-2 rounded transition-colors duration-200 ${activeTab === 'admin' ? 'bg-white bg-opacity-20' : 'hover:bg-white hover:bg-opacity-10'}`}
+            onClick={() => setActiveTab('admin')}
+          >
             <Settings className="h-5 w-5" />
             <span>Admin</span>
           </a>
@@ -117,11 +156,19 @@ export function EnhancedLingolandiasAppJsx() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Avatar className="h-10 w-10">
-                <AvatarImage src={user.avatarUrl} alt={`${user.firstName} ${user.lastName}`} />
-                <AvatarFallback>{user.firstName[0]}{user.lastName[0]}</AvatarFallback>
+                <AvatarImage
+                  src={user.avatarUrl}
+                  alt={`${user.firstName} ${user.lastName}`}
+                />
+                <AvatarFallback>
+                  {user.firstName[0]}
+                  {user.lastName[0]}
+                </AvatarFallback>
               </Avatar>
               <div>
-                <p className="text-sm font-medium">{user.firstName} {user.lastName}</p>
+                <p className="text-sm font-medium">
+                  {user.firstName} {user.lastName}
+                </p>
                 <p className="text-xs text-gray-300">{user.level}</p>
               </div>
             </div>
@@ -153,21 +200,37 @@ export function EnhancedLingolandiasAppJsx() {
                 />
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               </div>
-              <Button variant="ghost" size="icon" className="rounded-full relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full relative"
+              >
                 <Bell className="h-5 w-5" />
                 <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
               </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                  <Button
+                    variant="ghost"
+                    className="relative h-8 w-8 rounded-full"
+                  >
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src={user.avatarUrl} alt={`${user.firstName} ${user.lastName}`} />
-                      <AvatarFallback>{user.firstName[0]}{user.lastName[0]}</AvatarFallback>
+                      <AvatarImage
+                        src={user.avatarUrl}
+                        alt={`${user.firstName} ${user.lastName}`}
+                      />
+                      <AvatarFallback>
+                        {user.firstName[0]}
+                        {user.lastName[0]}
+                      </AvatarFallback>
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56" align="end" forceMount>
-                  <DropdownMenuItem className="flex items-center" onClick={() => setActiveTab('profile')}>
+                  <DropdownMenuItem
+                    className="flex items-center"
+                    onClick={() => setActiveTab('profile')}
+                  >
                     <User className="mr-2 h-4 w-4" />
                     <span>Profile</span>
                   </DropdownMenuItem>
@@ -198,10 +261,19 @@ export function EnhancedLingolandiasAppJsx() {
                 <div className="flex flex-col sm:flex-row sm:items-center mb-6">
                   <div className="relative mb-4 sm:mb-0 sm:mr-6">
                     <Avatar className="h-32 w-32">
-                      <AvatarImage src={user.avatarUrl} alt={`${user.firstName} ${user.lastName}`} />
-                      <AvatarFallback>{user.firstName[0]}{user.lastName[0]}</AvatarFallback>
+                      <AvatarImage
+                        src={user.avatarUrl}
+                        alt={`${user.firstName} ${user.lastName}`}
+                      />
+                      <AvatarFallback>
+                        {user.firstName[0]}
+                        {user.lastName[0]}
+                      </AvatarFallback>
                     </Avatar>
-                    <label htmlFor="avatar-upload" className="absolute bottom-0 right-0 bg-[#9c27b0] text-white p-2 rounded-full cursor-pointer shadow-lg hover:bg-[#7b1fa2] transition-colors duration-200">
+                    <label
+                      htmlFor="avatar-upload"
+                      className="absolute bottom-0 right-0 bg-[#9c27b0] text-white p-2 rounded-full cursor-pointer shadow-lg hover:bg-[#7b1fa2] transition-colors duration-200"
+                    >
                       <Camera className="h-5 w-5" />
                       <input
                         id="avatar-upload"
@@ -213,46 +285,104 @@ export function EnhancedLingolandiasAppJsx() {
                     </label>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900">{user.firstName} {user.lastName}</h3>
-                    <p className="text-sm text-gray-500">{user.level} • {user.xp} XP</p>
+                    <h3 className="text-2xl font-bold text-gray-900">
+                      {user.firstName} {user.lastName}
+                    </h3>
+                    <p className="text-sm text-gray-500">
+                      {user.level} • {user.xp} XP
+                    </p>
                     <div className="mt-2">
-                      <Progress value={(user.xp / user.nextLevelXp) * 100} className="w-full" />
+                      <Progress
+                        value={(user.xp / user.nextLevelXp) * 100}
+                        className="w-full"
+                      />
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">{user.nextLevelXp - user.xp} XP to next level</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {user.nextLevelXp - user.xp} XP to next level
+                    </p>
                   </div>
                 </div>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div>
                     <Label htmlFor="firstName">First Name</Label>
-                    <Input id="firstName" name="firstName" value={user.firstName} onChange={handleInputChange} className="mt-1" />
+                    <Input
+                      id="firstName"
+                      name="firstName"
+                      value={user.firstName}
+                      onChange={handleInputChange}
+                      className="mt-1"
+                    />
                   </div>
                   <div>
                     <Label htmlFor="lastName">Last Name</Label>
-                    <Input id="lastName" name="lastName" value={user.lastName} onChange={handleInputChange} className="mt-1" />
+                    <Input
+                      id="lastName"
+                      name="lastName"
+                      value={user.lastName}
+                      onChange={handleInputChange}
+                      className="mt-1"
+                    />
                   </div>
                   <div>
                     <Label htmlFor="phone">Phone</Label>
-                    <Input id="phone" name="phone" value={user.phone} onChange={handleInputChange} className="mt-1" />
+                    <Input
+                      id="phone"
+                      name="phone"
+                      value={user.phone}
+                      onChange={handleInputChange}
+                      className="mt-1"
+                    />
                   </div>
                   <div>
                     <Label htmlFor="email">Email</Label>
-                    <Input id="email" name="email" type="email" value={user.email} onChange={handleInputChange} className="mt-1" />
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={user.email}
+                      onChange={handleInputChange}
+                      className="mt-1"
+                    />
                   </div>
                   <div>
                     <Label htmlFor="address">Address</Label>
-                    <Input id="address" name="address" value={user.address} onChange={handleInputChange} className="mt-1" />
+                    <Input
+                      id="address"
+                      name="address"
+                      value={user.address}
+                      onChange={handleInputChange}
+                      className="mt-1"
+                    />
                   </div>
                   <div>
                     <Label htmlFor="city">City</Label>
-                    <Input id="city" name="city" value={user.city} onChange={handleInputChange} className="mt-1" />
+                    <Input
+                      id="city"
+                      name="city"
+                      value={user.city}
+                      onChange={handleInputChange}
+                      className="mt-1"
+                    />
                   </div>
                   <div>
                     <Label htmlFor="country">Country</Label>
-                    <Input id="country" name="country" value={user.country} onChange={handleInputChange} className="mt-1" />
+                    <Input
+                      id="country"
+                      name="country"
+                      value={user.country}
+                      onChange={handleInputChange}
+                      className="mt-1"
+                    />
                   </div>
                   <div>
                     <Label htmlFor="postalCode">Postal Code</Label>
-                    <Input id="postalCode" name="postalCode" value={user.postalCode} onChange={handleInputChange} className="mt-1" />
+                    <Input
+                      id="postalCode"
+                      name="postalCode"
+                      value={user.postalCode}
+                      onChange={handleInputChange}
+                      className="mt-1"
+                    />
                   </div>
                 </div>
                 <div className="mt-6">
@@ -267,15 +397,22 @@ export function EnhancedLingolandiasAppJsx() {
                   />
                 </div>
                 <div className="mt-6">
-                  <Button className="bg-[#43a047] hover:bg-[#3d9142] text-white">Save Changes</Button>
+                  <Button className="bg-[#43a047] hover:bg-[#3d9142] text-white">
+                    Save Changes
+                  </Button>
                 </div>
               </div>
             </div>
           ) : activeTab === 'admin' ? (
             <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
               <div className="px-4 py-5 sm:p-6">
-                <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">User Management</h3>
-                <Button onClick={() => setIsCreateUserModalOpen(true)} className="bg-[#43a047] hover:bg-[#3d9142] text-white">
+                <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
+                  User Management
+                </h3>
+                <Button
+                  onClick={() => setIsCreateUserModalOpen(true)}
+                  className="bg-[#43a047] hover:bg-[#3d9142] text-white"
+                >
                   <Plus className="h-5 w-5 mr-2" />
                   Create New User
                 </Button>
@@ -287,7 +424,9 @@ export function EnhancedLingolandiasAppJsx() {
                 <div className="bg-white p-6 rounded-lg shadow-md">
                   <h3 className="text-lg font-semibold mb-2">Daily Streak</h3>
                   <div className="flex items-center">
-                    <span className="text-4xl font-bold text-[#43a047]">{user.streak}</span>
+                    <span className="text-4xl font-bold text-[#43a047]">
+                      {user.streak}
+                    </span>
                     <span className="ml-2 text-gray-600">days</span>
                   </div>
                 </div>
@@ -295,7 +434,12 @@ export function EnhancedLingolandiasAppJsx() {
                   <h3 className="text-lg font-semibold mb-2">Languages</h3>
                   <div className="flex flex-wrap gap-2">
                     {user.languages.map((lang, index) => (
-                      <span key={index} className="px-2 py-1 bg-[#9c27b0] text-white rounded-full text-sm">{lang}</span>
+                      <span
+                        key={index}
+                        className="px-2 py-1 bg-[#9c27b0] text-white rounded-full text-sm"
+                      >
+                        {lang}
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -306,7 +450,9 @@ export function EnhancedLingolandiasAppJsx() {
                 </div>
               </div>
               <div className="mt-8 bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-2xl font-bold text-[#9c27b0] mb-4">Recent Activity</h2>
+                <h2 className="text-2xl font-bold text-[#9c27b0] mb-4">
+                  Recent Activity
+                </h2>
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <div className="bg-[#43a047] p-2 rounded-full mr-4">
@@ -347,8 +493,13 @@ export function EnhancedLingolandiasAppJsx() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
             <div className="flex justify-between items-center p-6 border-b">
-              <h3 className="text-lg font-medium text-gray-900">Create New User</h3>
-              <Button variant="ghost" onClick={() => setIsCreateUserModalOpen(false)}>
+              <h3 className="text-lg font-medium text-gray-900">
+                Create New User
+              </h3>
+              <Button
+                variant="ghost"
+                onClick={() => setIsCreateUserModalOpen(false)}
+              >
                 <X className="h-5 w-5" />
               </Button>
             </div>
@@ -356,19 +507,41 @@ export function EnhancedLingolandiasAppJsx() {
               <div className="space-y-4">
                 <div>
                   <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" name="firstName" value={newUser.firstName} onChange={handleNewUserInputChange} />
+                  <Input
+                    id="firstName"
+                    name="firstName"
+                    value={newUser.firstName}
+                    onChange={handleNewUserInputChange}
+                  />
                 </div>
                 <div>
                   <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" name="lastName" value={newUser.lastName} onChange={handleNewUserInputChange} />
+                  <Input
+                    id="lastName"
+                    name="lastName"
+                    value={newUser.lastName}
+                    onChange={handleNewUserInputChange}
+                  />
                 </div>
                 <div>
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" name="email" type="email" value={newUser.email} onChange={handleNewUserInputChange} />
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={newUser.email}
+                    onChange={handleNewUserInputChange}
+                  />
                 </div>
                 <div>
                   <Label htmlFor="password">Password</Label>
-                  <Input id="password" name="password" type="password" value={newUser.password} onChange={handleNewUserInputChange} />
+                  <Input
+                    id="password"
+                    name="password"
+                    type="password"
+                    value={newUser.password}
+                    onChange={handleNewUserInputChange}
+                  />
                 </div>
                 <div>
                   <Label htmlFor="role">Role</Label>
@@ -386,12 +559,22 @@ export function EnhancedLingolandiasAppJsx() {
               </div>
             </div>
             <div className="flex justify-end space-x-3 p-6 border-t">
-              <Button variant="outline" onClick={() => setIsCreateUserModalOpen(false)}>Cancel</Button>
-              <Button className="bg-[#43a047] hover:bg-[#3d9142] text-white" onClick={handleCreateUser}>Create</Button>
+              <Button
+                variant="outline"
+                onClick={() => setIsCreateUserModalOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                className="bg-[#43a047] hover:bg-[#3d9142] text-white"
+                onClick={handleCreateUser}
+              >
+                Create
+              </Button>
             </div>
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }
